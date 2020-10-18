@@ -1,9 +1,9 @@
 //TRABAJO FINAL CASO Nro 2 TIENDA - Fecha de entrega 25-10-2020
-//GRUPO : HERNAN, FERNANDO BARRIOS, ALEXANDER MARINO, LEANDRO TAPPA, SILVINA RONZONI
+//GRUPO : HERNAN FIGUEROA, FERNANDO BARRIOS, ALEXANDER MARINO, LEANDRO TAPPA, SILVINA RONZONI
 package trabajofinal_tienda;
 
 public class Producto {
-    // 
+   // DECLARAR VARIABLES 
     private int codigo;
     private String nombre;
     private String rubro;
@@ -12,10 +12,8 @@ public class Producto {
     private double preciouni;
     private double iva;
     private double preciofinal;
-   
     
     // CONSTRUCTOR CON PARAMETROS
-
     public Producto(int codigo, String nombre, String rubro, int stockactual, int stockminimo, double preciouni, double iva, double preciofinal) {
         this.codigo = codigo;
         this.nombre = nombre;
@@ -26,8 +24,7 @@ public class Producto {
         this.iva = iva;
         this.preciofinal = preciofinal;
     }
-        
-    
+         
     // SETTERS
     public void setCodigo(int codigo) {
         this.codigo = codigo;
@@ -35,63 +32,51 @@ public class Producto {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-
     public void setRubro(String rubro) {
         this.rubro = rubro;
     }
-
     public void setStockactual(int stockactual) {
         this.stockactual = stockactual;
     }
-
     public void setStockminimo(int stockminimo) {
         this.stockminimo = stockminimo;
     }
-
     public void setPreciouni(double preciouni) {
         this.preciouni = preciouni;
     }
     public void setIva(double iva) {
         this.iva = iva;
     }
-    
     public void setPreciofinal(double preciofinal) {
         this.preciofinal = preciofinal;
     }
 
-    
     //GETTERS
-
     public int getCodigo() {
         return codigo;
     }
-
     public String getNombre() {
         return nombre;
     }
-
     public String getRubro() {
         return rubro;
     }
-
     public int getStockactual() {
         return stockactual;
     }
-
     public int getStockminimo() {
         return stockminimo;
     }
-
     public double getPreciouni() {
         return preciouni;
     }
     public double getIva() {
         return iva;
     }  
-
     public double getPreciofinal() {
         return preciofinal;
     }
+    
     //METODO PARA ASIGNAR IVA SEGUN RUBRO Y CALCULAR PRECIO FINAL
     public void PrecioFinal(){
         switch (rubro){    
@@ -114,5 +99,3 @@ public class Producto {
         System.out.println("   "+rubro+"        "+stockactual+"           "+stockminimo+"       "+preciouni+"      "+iva+"     "+preciofinal);
     }    
 }
-
-
