@@ -4,12 +4,18 @@ public class Stock
   {
  private double saldo; // variable de instancia que almacena el saldo
  
-  // constructor
-public Stock( double stockInicial )
- {
+ private double topeMin;
+ 
+ 
+ 
+public Stock( double stockInicial,double topeMin )
+ { this.topeMin= topeMin;
 
 
-if ( stockInicial > 0.0 )
+
+ 
+ 
+ if ( stockInicial > 0.0 )
 saldo = stockInicial;
 } 
 
@@ -23,4 +29,17 @@ saldo = stockInicial;
 public double obtenerSaldo()
  { return saldo; 
  } 
+
+
+ 
+   
+           
+  public void alerta (){
+  if (saldo <= topeMin) 
+      System.out.println("Alerta Tope minino Contactar proveedor "+ topeMin);       
+      
+      
+ 
+   }
+
 }
