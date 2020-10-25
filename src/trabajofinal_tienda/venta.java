@@ -1,5 +1,5 @@
 //TRABAJO FINAL CASO Nro 2 TIENDA - Fecha de entrega 25-10-2020
-//GRUPO = 
+//GRUPO : HERNAN FIGUEROA, FERNANDO BARRIOS, ALEXANDER MARINO, LEANDRO TAPPA, SILVINA RONZONIs
 package trabajofinal_tienda;
 public class Venta {
 

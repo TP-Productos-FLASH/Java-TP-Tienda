@@ -1,5 +1,5 @@
 ///TRABAJO FINAL CASO Nro 2 TIENDA - Fecha de entrega 25-10-2020
-//GRUPO = 
+//GRUPO : HERNAN FIGUEROA, FERNANDO BARRIOS, ALEXANDER MARINO, LEANDRO TAPPA, SILVINA RONZONI
 package trabajofinal_tienda;
 
 public class Producto {
@@ -10,6 +10,7 @@ public class Producto {
     private double preciouni = 0;
     private int stkactual = 0;
     private int stkminimo = 0;
+    private int unidadesVendidas;
 
     // CONSTRUCTOR SIN PARAMETROS
     public Producto(String nombre, String rubro, double preciouni,
@@ -20,6 +21,7 @@ public class Producto {
         this.preciouni = preciouni;
         this.stkactual = stkactual;
         this.stkminimo = stkminimo;
+        this.unidadesVendidas = 0;
     }
 
     public void setNombre(String nombre) {
@@ -40,6 +42,10 @@ public class Producto {
 
     public void setStockminimo(int stkminimo) {
         this.stkminimo = stkminimo;
+    }
+
+    public void updateUnidadesVendidas(int unidades) {
+        this.unidadesVendidas = this.unidadesVendidas + unidades;
     }
 
     //GETTERS
@@ -65,6 +71,10 @@ public class Producto {
 
     public int getStkminimo() {
         return this.stkminimo;
+    }
+
+    public int getUnidadesVendidas() {
+        return this.unidadesVendidas;
     }
 
     // MOSTRAR PRODUCTO
