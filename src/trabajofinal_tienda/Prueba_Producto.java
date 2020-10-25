@@ -8,13 +8,13 @@ public class Prueba_Producto {
     public static void main(String[] args) {
     
     //ASIGNAR VALORES A PRODUCTOS
-    Producto prod1=new Producto ( 01,"Lápiz        ","P",30,9,8,0,0);
+    ProductoOld prod1=new ProductoOld ( 01,"Lápiz        ","P",30,9,8,0,0);
     prod1.PrecioFinal();
-    Producto prod2=new Producto ( 02,"Borrador     ","P",15,5,5,0,0);
+    ProductoOld prod2=new ProductoOld ( 02,"Borrador     ","P",15,5,5,0,0);
     prod2.PrecioFinal();
-    Producto prod3=new Producto ( 03,"Café         ","S",20,10,250,0,0);
+    ProductoOld prod3=new ProductoOld ( 03,"Café         ","S",20,10,250,0,0);
     prod3.PrecioFinal();
-    Producto prod4=new Producto ( 03,"Desinfectante","D",12,11,138,0,0);
+    ProductoOld prod4=new ProductoOld ( 03,"Desinfectante","D",12,11,138,0,0);
     prod4.PrecioFinal();
 
     //MOSTRAR PRODUCTOS
