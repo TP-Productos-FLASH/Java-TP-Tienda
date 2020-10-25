@@ -34,9 +34,14 @@ public class Tienda_Venta {
          while (otraVenta) {   
              boolean otroProducto = true;
              System.out.println("-------------------------------------------");
-             System.out.println("| SISTEMA DE VENTAS  -  Venta Nro : "+(contadorVentas)+"    |");  
-             System.out.println("-------------------------------------------");                     
-              while (otroProducto && prod.get(codiventaIndex).getStkactual() != 0) { //PRODUCTO
+             System.out.println("| SISTEMA DE VENTAS  -  Venta Nro : "+(contadorVentas)+"    |"); 
+              while (otroProducto && prod.get(codiventaIndex).getStkactual() != 0) { //PRODUCTO 
+                  System.out.println("-------------------------------------------");    
+                  System.out.println("Lista de productos:");
+                  for (int i = 0; i < prod.size();i++) {
+                      int index = i + 1;
+                      System.out.println(index +". " + prod.get(i).getNombre());
+                  }       
                   System.out.print("Ingrese el codigo articulo :   ");
                   codArticulo=teclado.nextInt();
 
