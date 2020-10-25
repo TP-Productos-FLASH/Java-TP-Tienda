@@ -12,7 +12,7 @@ public class Tienda_Venta {
         Scanner teclado=new Scanner(System.in);
         String bandera="";
         // TODO: implementar esto mejor
-        double[] cuenta = new double[4];
+        double[] cuenta;
         double costoTotal = 0;
         double acumtotvta=0;
         int contadorVentas = 1;
@@ -21,18 +21,17 @@ public class Tienda_Venta {
         int cantprodvta=0;
         int cantvta=0;
         int itemsventa = 0;
-        boolean otraVenta = true;
-        boolean otroProducto = true;
 
         //INGRESAR ARTICULOS DE MATRIZ PRODUCTOS  
         agregarProducto("Lápiz        ","P",10,200,20);
         agregarProducto("Borrador     ","P",75,50,25);
         agregarProducto("Café         ","S",250,100,25);
-        agregarProducto("Desinfectante","S",100,80,50); 
+        agregarProducto("Desinfectante","D",100,80,50); 
     // REGISTRAR VENTAS 
     // DECLARAR E INICIALIZAR ARRAY
-        for (int i=0;i<=10;i++) {
+        boolean otraVenta = true;
          while (otraVenta) {   
+             boolean otroProducto = true;
              System.out.println("-------------------------------------------");
              System.out.println("| SISTEMA DE VENTAS  -  Venta Nro : "+(contadorVentas)+"    |");  
              System.out.println("-------------------------------------------");                     
@@ -48,8 +47,8 @@ public class Tienda_Venta {
                   System.out.println("Stock Actual    : "+prod.get(codiventaIndex).getStkactual());
                   System.out.print("Ingrese Cantidad:   ");
                   cantprodvta=teclado.nextInt();//UNIDADES VENDIDAS
-                  //cuenta1=cuenta1+cantprodvta;
 
+                  prod.get(codiventaIndex).updateUnidadesVendidas(cantprodvta);
                   int contVentaIndex = contadorVentas - 1;
                   ventas.add(new Venta(prod.get(codiventaIndex), cantprodvta));  
                   prod.get(codiventaIndex).setStockactual(prod.get(codiventaIndex).getStkactual()-cantprodvta);
@@ -78,7 +77,6 @@ public class Tienda_Venta {
               int otraventa = teclado.nextInt();
               if (otraventa == 0) otraVenta = false;
            }
-        }            
         // LEER Y MOSTRAR LA MATRIZ DE VENTAS  
            for(int i=0; i<ventas.size();i++){
                System.out.println(" NROVTA "+i+" COD.PROD."+ventas.get(i).getProducto().getCodigo()+
@@ -88,27 +86,28 @@ public class Tienda_Venta {
                }
           
     //PREGUNTAR SI QUIERE VER ESTADISTICAS Y MOSTRAR
-      /**System.out.println("\nDESEA VER ESTADISTICAS Y CTROL DE STOCK ? (S/N) :");
+      System.out.println("\nDESEA VER ESTADISTICAS Y CTROL DE STOCK ? (S/N) :");
       bandera=teclado.next().toLowerCase();
-      if ((bandera.equals("S"))||(bandera.equals("s"))) {
-        // PRODUCTO MAS VENDIDO
-        if ((cuenta1>=cuenta2)&&(cuenta1>=cuenta3)&&(cuenta1>=cuenta4)){ 
-            mayor=cuenta1;        }                      
-        else  if((cuenta2>=cuenta1)&&(cuenta2>=cuenta3)&&(cuenta2>=cuenta4)){
-            mayor=cuenta2;        }
-        else  if ((cuenta3>=cuenta1)&&(cuenta3>=cuenta2)&&(cuenta3>=cuenta4)){ 
-            mayor=cuenta3;        }
-        else  if ((cuenta4>=cuenta1)&&(cuenta4>=cuenta2)&&(cuenta4>=cuenta3)){ 
-            mayor=cuenta4;        }  
-      // PRODUCTO MENOS VENDIDO
-        if ((cuenta1<=cuenta2)&&(cuenta1<=cuenta3)&&(cuenta1<=cuenta4)){ 
-            menor=cuenta1;        }                      
-        else  if((cuenta2<=cuenta1)&&(cuenta2<=cuenta3)&&(cuenta2<=cuenta4)){
-            menor=cuenta2;     }
-        else  if ((cuenta3<=cuenta1)&&(cuenta3<=cuenta2)&&(cuenta3<=cuenta4)){ 
-            menor=cuenta3;        }
-        else  if ((cuenta4<=cuenta1)&&(cuenta4<=cuenta2)&&(cuenta4<=cuenta3)){ 
-            menor=cuenta4;       }             
+      if (bandera.equals("s")) {
+        int indexMayorVentas = 0;
+        int indexMenorVentas = 0;
+        for (int i = 0; i < prod.size(); i++) {
+            for (int j = 0; j < prod.size(); j++) {
+                if (i != j) {
+                    if (prod.get(i).getUnidadesVendidas() >= prod.get(j).getUnidadesVendidas()) {
+                        indexMayorVentas = i;
+                    } else {
+                        indexMayorVentas = j;
+                    }
+                    if (prod.get(i).getUnidadesVendidas() <= prod.get(j).getUnidadesVendidas()) {
+                        indexMenorVentas = i;
+                    } else {
+                        indexMenorVentas = j;
+                    }
+                }
+            }
+        }
+        // PRODUCTO MAS VENDIDO         
         System.out.println("\n----------------");
         System.out.println("  ESTADISTICAS  ");  
         System.out.println("----------------");
@@ -116,37 +115,19 @@ public class Tienda_Venta {
          System.out.println("Cantidad total de ventas :   "+cantvta+"  ");
          System.out.println("Importe total de ventas  : $ "+acumtotvta);
          System.out.printf ("Valor Promedio de venta  : $ %.2f%n",(acumtotvta/cantvta));
-         System.out.println("\nProducto más vendido con "+mayor+" unidades :");
-         // CONTROLA DUPLICADOS
-         if (cuenta1==mayor) {
-            System.out.println(b1.getNombre());
-         } if (cuenta2==mayor) {
-            System.out.println(b2.getNombre());
-        } if (cuenta3==mayor) {
-            System.out.println(b3.getNombre());
-        } if (cuenta4==mayor) {
-           System.out.println(b4.getNombre());
-        }
-        // CONTROLA DUPLICADOS
-         System.out.println("\nProducto menos vendido con "+menor+" unidades :");
-         if (cuenta1==menor) {
-            System.out.println(b1.getNombre());
-         } if (cuenta2==menor) {
-            System.out.println(b2.getNombre());
-        } if (cuenta3==menor) {
-            System.out.println(b3.getNombre());
-        } if (cuenta4==menor) {
-           System.out.println(b4.getNombre());
-        }       
+         System.out.println("\nProducto más vendido con "+prod.get(indexMayorVentas).getUnidadesVendidas()+" unidades : " + 
+                 prod.get(indexMayorVentas).getNombre());
+         System.out.println("\nProducto menos vendido con "+prod.get(indexMenorVentas).getUnidadesVendidas()+" unidades : " + 
+                 prod.get(indexMenorVentas).getNombre());
+
          // REPOSICION DE STOCK
          System.out.println("\n-----------------------");
          System.out.println("   CONTROL DE  STOCK");
          System.out.println("-----------------------");
-         b1.repostock();
-         b2.repostock();
-         b3.repostock();
-         b4.repostock();        
-      } **/
+         for (int i = 0; i < prod.size();i++) {
+             prod.get(i).repostock();
+         }       
+      }
     }
     private static void agregarProducto(String nombre, String rubro, double precioUnidad, int stockActual, int stockMinimo) {
         prod.add(new Producto(nombre, rubro, precioUnidad, stockActual, stockMinimo));
