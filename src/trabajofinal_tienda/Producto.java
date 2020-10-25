@@ -7,7 +7,6 @@ public class Producto {
     private int codigo = 0;
     private String nombre = "";
     private String rubro = "";
-    private int porciva = 0;
     private double preciouni = 0;
     private int stkactual = 0;
     private int stkminimo = 0;
@@ -44,51 +43,35 @@ public class Producto {
     }
 
     //GETTERS
+    public int getCodigo() {
+        return codigo;
+    }
+
     public String getNombre() {
-        return nombre;
+        return this.nombre;
     }
 
     public String getRubro() {
-        return rubro;
+        return this.rubro;
     }
 
     public double getPreciouni() {
-        return preciouni;
+        return this.preciouni;
     }
 
     public int getStkactual() {
-        return stkactual;
+        return this.stkactual;
     }
 
     public int getStkminimo() {
-        return stkminimo;
+        return this.stkminimo;
     }
 
     // MOSTRAR PRODUCTO
     public String muestroProducto() {
-        return nombre + rubro + porciva + preciouni + stkactual + stkminimo;
+        return this.nombre + this.rubro + this.preciouni + this.stkactual + this.stkminimo;
     }
 
-    // ASIGNAR PORCENTAJE DE IVA
-    public int asignaIva(int porc) {
-        porc = 0;
-        switch (rubro) {
-            case "S":
-            case "s":
-                porc = 4;
-                break;
-            case "P":
-            case "p":
-                porc = 16;
-                break;
-            case "D":
-            case "d":
-                porc = 12;
-                break;
-                default : System.out.println("Rubro ingresado Inexistente");
-        }
-        return porc;
-    }
     // REPOSICION DE 
     public void repostock() {
         if (stkactual <= stkminimo) {

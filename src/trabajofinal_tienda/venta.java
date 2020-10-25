@@ -4,7 +4,7 @@ package trabajofinal_tienda;
 public class Venta {
 
     //DECLARAR VARIABLES DE CLASE VENTA OTRO
-    private int nrovta=0;
+    private int nrovta=1;
     private double codiventa=0;
     private int cantprodvta=0;
     private double ivaS=0;
@@ -31,31 +31,35 @@ public class Venta {
     public int getUnidades() {
         return cantprodvta;
     }
-    public double getIvaS() {
-        return ivaS;
-    }
-
-    public Producto getProducto() {
-        return this.prod;
-    }
-    
-    public double getPreciofinal(Producto prod, int unidades) {
+    public double getIvaS(String rubro) {
         double porc = 0;
-        String rubro = prod.getRubro();
         switch (rubro.toLowerCase()) {
             case "s":
-                porc = 1.04;
+                porc = 4;
                 break;
             case "p":
-                porc = 1.16;
+                porc = 16;
                 break;
             case "d":
-                porc = 1.12;
+                porc = 12;
                 break;
             default:
                 System.out.println("Rubro ingresado Inexistente");
                 break;
         }
+        return porc;
+    }
+
+    public Producto getProducto() {
+        return this.prod;
+    }
+
+    public double getPreciofinal() {
+        return this.preciofinal;
+    }
+    
+    public double getPreciofinal(Producto prod, int unidades) {
+        double porc = getIvaS(prod.getRubro());
         return (prod.getPreciouni() * unidades * porc);
     }
 }
