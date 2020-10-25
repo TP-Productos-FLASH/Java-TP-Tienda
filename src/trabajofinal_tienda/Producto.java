@@ -13,20 +13,14 @@ public class Producto {
     private int stkminimo = 0;
 
     // CONSTRUCTOR SIN PARAMETROS
-    public Producto(int codigo, String nombre, String rubro, int porciva,
-            double preciouni, int stkactual, int stkminimo) {
-        this.codigo = codigo;
+    public Producto(String nombre, String rubro, double preciouni,
+            int stkactual, int stkminimo) {
+        this.codigo = codigo + 1;
         this.nombre = nombre;
         this.rubro = rubro;
-        this.porciva = porciva;
         this.preciouni = preciouni;
         this.stkactual = stkactual;
         this.stkminimo = stkminimo;
-    }
-
-    // SETTERS
-    public void setCodigo(int codigo) {
-        this.codigo = codigo;
     }
 
     public void setNombre(String nombre) {
@@ -35,10 +29,6 @@ public class Producto {
 
     public void setRubro(String rubro) {
         this.rubro = rubro;
-    }
-
-    public void setPorciva(int porciva) {
-        this.porciva = porciva;
     }
 
     public void setPreciouni(double preciouni) {
@@ -54,20 +44,12 @@ public class Producto {
     }
 
     //GETTERS
-    public int getCodigo() {
-        return codigo;
-    }
-
     public String getNombre() {
         return nombre;
     }
 
     public String getRubro() {
         return rubro;
-    }
-
-    public int getPorciva() {
-        return porciva;
     }
 
     public double getPreciouni() {

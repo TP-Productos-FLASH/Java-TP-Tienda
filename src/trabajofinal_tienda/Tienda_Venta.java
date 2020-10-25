@@ -2,31 +2,28 @@
 //GRUPO = 
 package trabajofinal_tienda;
 import java.util.Scanner;
-public class Tienda_Venta {
+import java.util.ArrayList;
+
+public class Tienda_Venta {                      
+    static ArrayList<Producto> prod=new ArrayList();                       
+    static ArrayList<Venta> venta=new ArrayList();
     public static void main(String[] args) {   
    // DECLARAR E INICIALIZAR VARIABLES DE CALCULO
-        String bandera="";
-        int codiventa=0; int j=0; int nrovta=1;
-        int cantprodvta=0; double ivaS=0; double preciofinal=0;
-        double estaventa=0; int itemsvta=0;
-        double cantvta=0; double acumtotvta=0;
-        int actualiza=0; double cuenta1=0; double cuenta2=0; double cuenta3=0; 
-        double cuenta4=0; double mayor=0;double menor=0;
-        Scanner teclado=new Scanner(System.in);
-        //INGRESAR ARTICULOS DE MATRIZ VENTA                             
-        Producto b[]=new Producto[4];
-        Producto b1=new Producto(1,"Lápiz        ","P",16,10,200,20);
-        Producto b2=new Producto(2,"Borrador     ","P",16,75,50,25);
-        Producto b3=new Producto(3,"Café         ","S",04,250,100,25);
-        Producto b4=new Producto(4,"Desinfectante","S",12,100,80,50); 
+        Scanner teclado=new Scanner(System.in);     
+        int contadorVentas = 1;
+
+        //INGRESAR ARTICULOS DE MATRIZ PRODUCTOS  
+        agregarProducto("Lápiz        ","P",10,200,20);
+        agregarProducto("Borrador     ","P",75,50,25);
+        agregarProducto("Café         ","S",250,100,25);
+        agregarProducto("Desinfectante","S",100,80,50); 
     // REGISTRAR VENTAS 
     // DECLARAR E INICIALIZAR ARRAY
         Producto v[]=new Producto[10];
-        int otraventa=1;int otroprod=1; int itemsventa=0;
         for (int i=0;i<v.length;i++) {
          while (otraventa==1) {   
              System.out.println("-------------------------------------------");
-             System.out.println("| SISTEMA DE VENTAS  -  Venta Nro : "+(nrovta)+"    |");  
+             System.out.println("| SISTEMA DE VENTAS  -  Venta Nro : "+(contadorVentas)+"    |");  
              System.out.println("-------------------------------------------");                     
               while (otroprod==1) { //PRODUCTO
                   codiventa=0;
@@ -186,6 +183,9 @@ public class Tienda_Venta {
          b3.repostock();
          b4.repostock();        
       }
+    }
+    private static void agregarProducto(String nombre, String rubro, double precioUnidad, int stockActual, int stockMinimo) {
+        prod.add(new Producto(nombre, rubro, precioUnidad, stockActual, stockMinimo));
     }
 }
 
