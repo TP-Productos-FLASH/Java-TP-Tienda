@@ -21,6 +21,7 @@ public class Tienda_Venta {
         int cantprodvta=0;
         int cantvta=0;
         int itemsventa = 0;
+        int codiventaIndex = 1;
 
         //INGRESAR ARTICULOS DE MATRIZ PRODUCTOS  
         agregarProducto("Lápiz        ","P",10,200,20);
@@ -35,22 +36,27 @@ public class Tienda_Venta {
              System.out.println("-------------------------------------------");
              System.out.println("| SISTEMA DE VENTAS  -  Venta Nro : "+(contadorVentas)+"    |");  
              System.out.println("-------------------------------------------");                     
-              while (otroProducto) { //PRODUCTO
+              while (otroProducto && prod.get(codiventaIndex).getStkactual() != 0) { //PRODUCTO
                   System.out.print("Ingrese el codigo articulo :   ");
                   codArticulo=teclado.nextInt();
 
     //CALCULAR SEGUN VALOR DE J QUE ES EL CODIGO DE PRODUCTO
-                  int codiventaIndex = codArticulo - 1;
+                  codiventaIndex = codArticulo - 1;
                   
                   System.out.println("Producto        : "+prod.get(codiventaIndex).getNombre());
                   System.out.println("Precio Unitario : "+prod.get(codiventaIndex).getPreciouni());
                   System.out.println("Stock Actual    : "+prod.get(codiventaIndex).getStkactual());
                   System.out.print("Ingrese Cantidad:   ");
+                  
                   cantprodvta=teclado.nextInt();//UNIDADES VENDIDAS
-
+                  while (prod.get(codiventaIndex).getStkactual() < cantprodvta){
+                      System.out.println("No hay stock disponible, compra maxima: " + prod.get(codiventaIndex).getStkactual() + " unidades");
+                      cantprodvta=teclado.nextInt();//UNIDADES VENDIDAS
+                  }
+              
                   prod.get(codiventaIndex).updateUnidadesVendidas(cantprodvta);
                   int contVentaIndex = contadorVentas - 1;
-                  ventas.add(new Venta(prod.get(codiventaIndex), cantprodvta));  
+                  ventas.add(new Venta(prod.get(codiventaIndex), cantprodvta));
                   prod.get(codiventaIndex).setStockactual(prod.get(codiventaIndex).getStkactual()-cantprodvta);
                   System.out.println("Iva sobre articulo : "+ ventas.get(contVentaIndex).getIvaS(
                         prod.get(codiventaIndex).getRubro()));
@@ -129,6 +135,7 @@ public class Tienda_Venta {
          }       
       }
     }
+    
     private static void agregarProducto(String nombre, String rubro, double precioUnidad, int stockActual, int stockMinimo) {
         prod.add(new Producto(nombre, rubro, precioUnidad, stockActual, stockMinimo));
     }
