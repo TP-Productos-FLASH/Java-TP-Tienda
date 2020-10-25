@@ -1,5 +1,5 @@
 ///TRABAJO FINAL CASO Nro 2 TIENDA - Fecha de entrega 25-10-2020
-//GRUPO = 
+//GRUPO : HERNAN FIGUEROA, FERNANDO BARRIOS, ALEXANDER MARINO, LEANDRO TAPPA, SILVINA RONZONI
 package trabajofinal_tienda;
 
 public class Producto {
@@ -7,26 +7,21 @@ public class Producto {
     private int codigo = 0;
     private String nombre = "";
     private String rubro = "";
-    private int porciva = 0;
     private double preciouni = 0;
     private int stkactual = 0;
     private int stkminimo = 0;
+    private int unidadesVendidas;
 
     // CONSTRUCTOR SIN PARAMETROS
-    public Producto(int codigo, String nombre, String rubro, int porciva,
-            double preciouni, int stkactual, int stkminimo) {
-        this.codigo = codigo;
+    public Producto(String nombre, String rubro, double preciouni,
+            int stkactual, int stkminimo) {
+        this.codigo = codigo + 1;
         this.nombre = nombre;
         this.rubro = rubro;
-        this.porciva = porciva;
         this.preciouni = preciouni;
         this.stkactual = stkactual;
         this.stkminimo = stkminimo;
-    }
-
-    // SETTERS
-    public void setCodigo(int codigo) {
-        this.codigo = codigo;
+        this.unidadesVendidas = 0;
     }
 
     public void setNombre(String nombre) {
@@ -35,10 +30,6 @@ public class Producto {
 
     public void setRubro(String rubro) {
         this.rubro = rubro;
-    }
-
-    public void setPorciva(int porciva) {
-        this.porciva = porciva;
     }
 
     public void setPreciouni(double preciouni) {
@@ -53,60 +44,44 @@ public class Producto {
         this.stkminimo = stkminimo;
     }
 
+    public void updateUnidadesVendidas(int unidades) {
+        this.unidadesVendidas = this.unidadesVendidas + unidades;
+    }
+
     //GETTERS
     public int getCodigo() {
         return codigo;
     }
 
     public String getNombre() {
-        return nombre;
+        return this.nombre;
     }
 
     public String getRubro() {
-        return rubro;
-    }
-
-    public int getPorciva() {
-        return porciva;
+        return this.rubro;
     }
 
     public double getPreciouni() {
-        return preciouni;
+        return this.preciouni;
     }
 
     public int getStkactual() {
-        return stkactual;
+        return this.stkactual;
     }
 
     public int getStkminimo() {
-        return stkminimo;
+        return this.stkminimo;
+    }
+
+    public int getUnidadesVendidas() {
+        return this.unidadesVendidas;
     }
 
     // MOSTRAR PRODUCTO
     public String muestroProducto() {
-        return nombre + rubro + porciva + preciouni + stkactual + stkminimo;
+        return this.nombre + this.rubro + this.preciouni + this.stkactual + this.stkminimo;
     }
 
-    // ASIGNAR PORCENTAJE DE IVA
-    public int asignaIva(int porc) {
-        porc = 0;
-        switch (rubro) {
-            case "S":
-            case "s":
-                porc = 4;
-                break;
-            case "P":
-            case "p":
-                porc = 16;
-                break;
-            case "D":
-            case "d":
-                porc = 12;
-                break;
-                default : System.out.println("Rubro ingresado Inexistente");
-        }
-        return porc;
-    }
     // REPOSICION DE 
     public void repostock() {
         if (stkactual <= stkminimo) {

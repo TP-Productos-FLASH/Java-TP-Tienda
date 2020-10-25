@@ -1,60 +1,65 @@
 //TRABAJO FINAL CASO Nro 2 TIENDA - Fecha de entrega 25-10-2020
-//GRUPO = 
+//GRUPO : HERNAN FIGUEROA, FERNANDO BARRIOS, ALEXANDER MARINO, LEANDRO TAPPA, SILVINA RONZONIs
 package trabajofinal_tienda;
-public class Venta extends Producto {
+public class Venta {
 
     //DECLARAR VARIABLES DE CLASE VENTA OTRO
-    private int nrovta=0;
+    private int nrovta=1;
     private double codiventa=0;
     private int cantprodvta=0;
     private double ivaS=0;
     private double preciofinal=0;
+    private Producto prod;
     
-     //CONSTRUCTOR CON HERENCIA DE PRODUCTO
-    public Venta(int nrovta, int codiventa, int cantprodvta, double ivaS, 
-            double preciofinal,int codigo,String nombre,String rubro,int 
-            porciva,double preciouni, int stkactual, int stkminimo) {
-        super(codigo, nombre, rubro, porciva, preciouni, stkactual, stkminimo);
+     //CONSTRUCTOR
+    public Venta(Producto prod, int unidades) {
+        this.nrovta = nrovta++;
+        this.cantprodvta = unidades;
+        this.preciofinal = this.getPreciofinal(prod, unidades);
+        this.prod = prod;
     }
 
     // SETTERS
-    public void setNrovta(int nrovta) {
-        this.nrovta = nrovta;
-    }
-    public void setCodiventa(double codiventa) {
-        this.codiventa = codiventa;
-    }
-    public void setCantprodvta(int cantprodvta) {
+    public void setUnidades(int cantprodvta) {
         this.cantprodvta = cantprodvta;
-    }
-    public void setIvaS(double ivaS) {
-        this.ivaS = ivaS;
-    }
-    public void setPreciofinal(double preciofinal) {
-        this.preciofinal = preciofinal;
     }
     //GETTERS
 
     public double getNrovta() {
-        return nrovta;
+        return this.nrovta;
     }
-    public double getCodiventa() {
-        return codiventa;
-    }
-    public int getCantprodvta() {
+    public int getUnidades() {
         return cantprodvta;
     }
-    public double getIvaS() {
-        return ivaS;
+    public double getIvaS(String rubro) {
+        double porc = 0;
+        switch (rubro.toLowerCase()) {
+            case "s":
+                porc = 4;
+                break;
+            case "p":
+                porc = 16;
+                break;
+            case "d":
+                porc = 12;
+                break;
+            default:
+                System.out.println("Rubro ingresado Inexistente");
+                break;
+        }
+        return porc;
     }
+
+    public Producto getProducto() {
+        return this.prod;
+    }
+
     public double getPreciofinal() {
-        return preciofinal;
+        return this.preciofinal;
     }
     
-    @Override
-    public String muestroProducto(){
-        return (super.getCodigo()+getNombre()+super.getRubro()+
-                super.getPorciva()+super.getPreciouni()+super.getStkactual()
-                +super.getStkminimo());
-    }        
+    public double getPreciofinal(Producto prod, int unidades) {
+        double porc = getIvaS(prod.getRubro());
+        return (prod.getPreciouni() * unidades * porc);
+    }
 }
