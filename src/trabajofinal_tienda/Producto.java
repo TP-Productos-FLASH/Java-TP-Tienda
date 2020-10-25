@@ -1,101 +1,121 @@
-//TRABAJO FINAL CASO Nro 2 TIENDA - Fecha de entrega 25-10-2020
-//GRUPO : HERNAN FIGUEROA, FERNANDO BARRIOS, ALEXANDER MARINO, LEANDRO TAPPA, SILVINA RONZONI
+///TRABAJO FINAL CASO Nro 2 TIENDA - Fecha de entrega 25-10-2020
+//GRUPO = 
 package trabajofinal_tienda;
 
 public class Producto {
-   // DECLARAR VARIABLES 
-    private int codigo;
-    private String nombre;
-    private String rubro;
-    private int stockactual;
-    private int stockminimo;
-    private double preciouni;
-    private double iva;
-    private double preciofinal;
-    
-    // CONSTRUCTOR CON PARAMETROS
-    public Producto(int codigo, String nombre, String rubro, int stockactual, int stockminimo, double preciouni, double iva, double preciofinal) {
+    // DECLARAR VARIABLES DE CLASE PRODUCTO
+    private int codigo = 0;
+    private String nombre = "";
+    private String rubro = "";
+    private int porciva = 0;
+    private double preciouni = 0;
+    private int stkactual = 0;
+    private int stkminimo = 0;
+
+    // CONSTRUCTOR SIN PARAMETROS
+    public Producto(int codigo, String nombre, String rubro, int porciva,
+            double preciouni, int stkactual, int stkminimo) {
         this.codigo = codigo;
         this.nombre = nombre;
         this.rubro = rubro;
-        this.stockactual = stockactual;
-        this.stockminimo = stockminimo;
+        this.porciva = porciva;
         this.preciouni = preciouni;
-        this.iva = iva;
-        this.preciofinal = preciofinal;
+        this.stkactual = stkactual;
+        this.stkminimo = stkminimo;
     }
-         
+
     // SETTERS
     public void setCodigo(int codigo) {
         this.codigo = codigo;
     }
+
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
+
     public void setRubro(String rubro) {
         this.rubro = rubro;
     }
-    public void setStockactual(int stockactual) {
-        this.stockactual = stockactual;
+
+    public void setPorciva(int porciva) {
+        this.porciva = porciva;
     }
-    public void setStockminimo(int stockminimo) {
-        this.stockminimo = stockminimo;
-    }
+
     public void setPreciouni(double preciouni) {
         this.preciouni = preciouni;
     }
-    public void setIva(double iva) {
-        this.iva = iva;
+
+    public void setStockactual(int stkactual) {
+        this.stkactual = stkactual;
     }
-    public void setPreciofinal(double preciofinal) {
-        this.preciofinal = preciofinal;
+
+    public void setStockminimo(int stkminimo) {
+        this.stkminimo = stkminimo;
     }
 
     //GETTERS
     public int getCodigo() {
         return codigo;
     }
+
     public String getNombre() {
         return nombre;
     }
+
     public String getRubro() {
         return rubro;
     }
-    public int getStockactual() {
-        return stockactual;
+
+    public int getPorciva() {
+        return porciva;
     }
-    public int getStockminimo() {
-        return stockminimo;
-    }
+
     public double getPreciouni() {
         return preciouni;
     }
-    public double getIva() {
-        return iva;
-    }  
-    public double getPreciofinal() {
-        return preciofinal;
+
+    public int getStkactual() {
+        return stkactual;
     }
-    
-    //METODO PARA ASIGNAR IVA SEGUN RUBRO Y CALCULAR PRECIO FINAL
-    public void PrecioFinal(){
-        switch (rubro){    
-        case "P": case "p":
-        setIva(16);
-        break;
-        case "S": case "s":
-        setIva(4);
-        break;
-        case "D": case "d":
-        setIva(12);
-        break;
+
+    public int getStkminimo() {
+        return stkminimo;
     }
-    preciofinal=(preciouni+(preciouni*iva/100));
+
+    // MOSTRAR PRODUCTO
+    public String muestroProducto() {
+        return nombre + rubro + porciva + preciouni + stkactual + stkminimo;
     }
-    
-    //METODO PARA MOSTRAR PRODUCTOS 
-    public void mostrarProducto(){ 
-        System.out.print("  "+codigo+"    "+nombre+"         ");        
-        System.out.println("   "+rubro+"        "+stockactual+"           "+stockminimo+"       "+preciouni+"      "+iva+"     "+preciofinal);
-    }    
+
+    // ASIGNAR PORCENTAJE DE IVA
+    public int asignaIva(int porc) {
+        porc = 0;
+        switch (rubro) {
+            case "S":
+            case "s":
+                porc = 4;
+                break;
+            case "P":
+            case "p":
+                porc = 16;
+                break;
+            case "D":
+            case "d":
+                porc = 12;
+                break;
+                default : System.out.println("Rubro ingresado Inexistente");
+        }
+        return porc;
+    }
+    // REPOSICION DE 
+    public void repostock() {
+        if (stkactual <= stkminimo) {
+            System.out.println("\nHacer Pedido de Reposicion del artículo " + nombre);
+            System.out.println("Stock actual : " + stkactual + "  igual o debajo del"
+                    + " Stock Minimo" + " ( " + stkminimo + " )");
+            System.out.println("               ");
+        } else {
+            System.out.println("Producto : " + nombre + " con valores mínimos de stock garantizados");
+        }
+    }
 }
